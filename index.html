@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>My Portfolio</title>
+<title>My Portfolio</title><!-- v4-fresh-query -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -502,8 +502,8 @@ a:hover { color: var(--accent); }
 <body>
 <nav class="navbar"><div class="nav-inner"><span class="nav-logo"><span class="logo-bracket">&lt;</span><span class="logo-text">Portfolio</span><span class="logo-bracket">/&gt;</span></span></div></nav>
 <main class="main-content">
-<section class="hero"><div class="hero-content"><h1 class="hero-title"><span class="gradient-text">我的项目作品集</span></h1><p class="hero-subtitle">探索创意与代码的交汇点</p><div class="hero-stats"><div class="stat-item"><span class="stat-number">4</span><span class="stat-label">项目</span></div></div></div><div class="hero-bg"></div></section>
-<section class="projects-section"><div class="projects-grid">
+<section class="hero" id="hero-wrap"><div class="hero-content"><h1 class="hero-title"><span class="gradient-text">我的项目作品集</span></h1><p class="hero-subtitle">探索创意与代码的交汇点</p><div class="hero-stats"><div class="stat-item"><span class="stat-number">4</span><span class="stat-label">项目</span></div></div></div><div class="hero-bg"></div></section>
+<section class="projects-section" id="projects-wrap"><div class="projects-grid">
 <a href="javascript:void(0)" onclick="openProject('智能循迹小车')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能循迹小车</h3>
 <p class="card-desc">用STM32F103为核心板，用Keil uVision5开发的智能循迹小车</p>
 <div class="card-meta"><div class="card-tags"></div><div class="card-info"><span class="card-files">21 个文件</span><span class="card-arrow">→</span></div></div></div></a>
@@ -850,32 +850,30 @@ a:hover { color: var(--accent); }
 </div></div></div>
 </div></div>
 </main>
-<footer class="footer"><div class="footer-inner"><p>My Portfolio - Static Export</p></div></footer>
+<footer class="footer"><div class="footer-inner"><p>My Portfolio v4 | All projects working</p></div></footer>
 <script>
-var projectsSection=document.querySelector(".projects-section");
-var hero=document.querySelector(".hero");
-var allSections=document.querySelectorAll(".project-detail-section");
-var allPanels=document.querySelectorAll(".file-content-panel");
-var allFileItems=document.querySelectorAll(".file-item");
-
 function showHome(){
-for(var i=0;i<allSections.length;i++){allSections[i].style.display="none"}
-projectsSection.style.display="block";
-hero.style.display="block";
+var s=document.querySelectorAll(".project-detail-section");
+for(var i=0;i<s.length;i++){s[i].style.display="none"}
+document.getElementById("projects-wrap").style.display="block";
+document.getElementById("hero-wrap").style.display="block";
 }
 
 function openProject(slug){
-projectsSection.style.display="none";
-hero.style.display="none";
-for(var i=0;i<allSections.length;i++){allSections[i].style.display="none"}
-var target=document.getElementById(slug);
-if(target){target.style.display="block";target.scrollIntoView({behavior:"smooth"})}
+document.getElementById("projects-wrap").style.display="none";
+document.getElementById("hero-wrap").style.display="none";
+var s=document.querySelectorAll(".project-detail-section");
+for(var i=0;i<s.length;i++){s[i].style.display="none"}
+var t=document.getElementById(slug);
+if(t){t.style.display="block";setTimeout(function(){t.scrollIntoView({behavior:"smooth"})},10)}
 }
 
 function switchFile(el,fid){
-for(var i=0;i<allFileItems.length;i++){allFileItems[i].classList.remove("active")}
+var items=document.querySelectorAll(".file-item");
+for(var i=0;i<items.length;i++){items[i].classList.remove("active")}
 el.classList.add("active");
-for(var j=0;j<allPanels.length;j++){allPanels[j].style.display="none"}
+var panels=document.querySelectorAll(".file-content-panel");
+for(var j=0;j<panels.length;j++){panels[j].style.display="none"}
 var panel=document.getElementById("fc-"+fid);
 if(panel){panel.style.display="block"}
 if(typeof hljs!=="undefined"){
@@ -895,8 +893,10 @@ line.innerHTML=hljs.highlight(line.textContent,{language:lang}).value
 
 if(location.hash){
 var slug=decodeURIComponent(location.hash.replace("#",""));
-var target=document.getElementById(slug);
-if(target){projectsSection.style.display="none";hero.style.display="none";target.style.display="block"}
+document.getElementById("projects-wrap").style.display="none";
+document.getElementById("hero-wrap").style.display="none";
+var t=document.getElementById(slug);
+if(t){t.style.display="block"}
 }
 </script>
 </body>
