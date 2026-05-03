@@ -504,16 +504,16 @@ a:hover { color: var(--accent); }
 <main class="main-content">
 <section class="hero"><div class="hero-content"><h1 class="hero-title"><span class="gradient-text">我的项目作品集</span></h1><p class="hero-subtitle">探索创意与代码的交汇点</p><div class="hero-stats"><div class="stat-item"><span class="stat-number">4</span><span class="stat-label">项目</span></div></div></div><div class="hero-bg"></div></section>
 <section class="projects-section"><div class="projects-grid">
-<a href="#智能循迹小车" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能循迹小车</h3>
+<a href="javascript:void(0)" onclick="openProject('智能循迹小车')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能循迹小车</h3>
 <p class="card-desc">用STM32F103为核心板，用Keil uVision5开发的智能循迹小车</p>
 <div class="card-meta"><div class="card-tags"></div><div class="card-info"><span class="card-files">21 个文件</span><span class="card-arrow">→</span></div></div></div></a>
-<a href="#智能点餐系统" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能点餐系统</h3>
+<a href="javascript:void(0)" onclick="openProject('智能点餐系统')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能点餐系统</h3>
 <p class="card-desc">用Qt Creator 4.11.1 (Community)和C++完成的C/S架构的智能点餐系统</p>
 <div class="card-meta"><div class="card-tags"></div><div class="card-info"><span class="card-files">74 个文件</span><span class="card-arrow">→</span></div></div></div></a>
-<a href="#智能家居" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能家居</h3>
+<a href="javascript:void(0)" onclick="openProject('智能家居')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能家居</h3>
 <p class="card-desc">用LVGL以及MQTT巴法云实现的远端控制的智能家居系统</p>
 <div class="card-meta"><div class="card-tags"></div><div class="card-info"><span class="card-files">13 个文件</span><span class="card-arrow">→</span></div></div></div></a>
-<a href="#智能门锁" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能门锁</h3>
+<a href="javascript:void(0)" onclick="openProject('智能门锁')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能门锁</h3>
 <p class="card-desc">以STM32F407为核心板，用FreeRTOS操作系统实现多模态智能门锁系统</p>
 <div class="card-meta"><div class="card-tags"></div><div class="card-info"><span class="card-files">34 个文件</span><span class="card-arrow">→</span></div></div></div></a>
 </div></section>
@@ -852,7 +852,6 @@ a:hover { color: var(--accent); }
 </main>
 <footer class="footer"><div class="footer-inner"><p>My Portfolio - Static Export</p></div></footer>
 <script>
-(function(){
 var projectsSection=document.querySelector(".projects-section");
 var hero=document.querySelector(".hero");
 var allSections=document.querySelectorAll(".project-detail-section");
@@ -863,9 +862,15 @@ function showHome(){
 for(var i=0;i<allSections.length;i++){allSections[i].style.display="none"}
 projectsSection.style.display="block";
 hero.style.display="block";
-history.replaceState(null,"",location.pathname)
 }
-window.showHome=showHome;
+
+function openProject(slug){
+projectsSection.style.display="none";
+hero.style.display="none";
+for(var i=0;i<allSections.length;i++){allSections[i].style.display="none"}
+var target=document.getElementById(slug);
+if(target){target.style.display="block";target.scrollIntoView({behavior:"smooth"})}
+}
 
 function switchFile(el,fid){
 for(var i=0;i<allFileItems.length;i++){allFileItems[i].classList.remove("active")}
@@ -887,37 +892,12 @@ line.innerHTML=hljs.highlight(line.textContent,{language:lang}).value
 }
 }
 }
-window.switchFile=switchFile;
-
-var cards=document.querySelectorAll(".project-card");
-for(var i=0;i<cards.length;i++){
-(function(card){
-card.addEventListener("click",function(e){
-e.preventDefault();
-var slug=card.getAttribute("href").replace("#","");
-projectsSection.style.display="none";
-hero.style.display="none";
-for(var j=0;j<allSections.length;j++){allSections[j].style.display="none"}
-var target=document.getElementById(slug);
-if(target){
-target.style.display="block";
-history.replaceState(null,"",location.pathname+"#"+encodeURIComponent(slug));
-target.scrollIntoView({behavior:"smooth"})
-}
-})
-})(cards[i])
-}
 
 if(location.hash){
 var slug=decodeURIComponent(location.hash.replace("#",""));
 var target=document.getElementById(slug);
-if(target){
-projectsSection.style.display="none";
-hero.style.display="none";
-target.style.display="block"
+if(target){projectsSection.style.display="none";hero.style.display="none";target.style.display="block"}
 }
-}
-})();
 </script>
 </body>
 </html>
