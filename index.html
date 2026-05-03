@@ -852,18 +852,72 @@ a:hover { color: var(--accent); }
 </main>
 <footer class="footer"><div class="footer-inner"><p>My Portfolio - Static Export</p></div></footer>
 <script>
-function showHome(){document.querySelectorAll(".project-detail-section").forEach(function(e){e.style.display="none"});document.querySelector(".projects-section").style.display="block";document.querySelector(".hero").style.display="block";window.location.hash=""}
+(function(){
+var projectsSection=document.querySelector(".projects-section");
+var hero=document.querySelector(".hero");
+var allSections=document.querySelectorAll(".project-detail-section");
+var allPanels=document.querySelectorAll(".file-content-panel");
+var allFileItems=document.querySelectorAll(".file-item");
+
+function showHome(){
+for(var i=0;i<allSections.length;i++){allSections[i].style.display="none"}
+projectsSection.style.display="block";
+hero.style.display="block";
+history.replaceState(null,"",location.pathname)
+}
+window.showHome=showHome;
+
 function switchFile(el,fid){
-document.querySelectorAll(".file-item").forEach(function(e){e.classList.remove("active")});el.classList.add("active");
-var slug=location.hash.replace("#","");
-document.querySelectorAll(".file-content-panel").forEach(function(e){e.style.display="none"});
+for(var i=0;i<allFileItems.length;i++){allFileItems[i].classList.remove("active")}
+el.classList.add("active");
+for(var j=0;j<allPanels.length;j++){allPanels[j].style.display="none"}
 var panel=document.getElementById("fc-"+fid);
 if(panel){panel.style.display="block"}
-// Highlight code
-if(typeof hljs!=="undefined"){panel.querySelectorAll(".line-code").forEach(function(line){if(line.parentElement.parentElement.className){var lang=line.parentElement.parentElement.className;if(hljs.getLanguage(lang)){var r=hljs.highlight(line.textContent,{language:lang});line.innerHTML=r.value}}})}
+if(typeof hljs!=="undefined"){
+var lines=panel.querySelectorAll(".line-code");
+for(var k=0;k<lines.length;k++){
+var line=lines[k];
+var tbody=line.parentElement.parentElement;
+if(tbody&&tbody.className){
+var lang=tbody.className;
+if(hljs.getLanguage(lang)){
+line.innerHTML=hljs.highlight(line.textContent,{language:lang}).value
 }
-document.querySelectorAll(".project-card").forEach(function(card){card.addEventListener("click",function(e){e.preventDefault();var href=card.getAttribute("href");var slug=href.replace("#","");document.querySelector(".projects-section").style.display="none";document.querySelector(".hero").style.display="none";document.querySelectorAll(".project-detail-section").forEach(function(s){s.style.display="none"});var target=document.getElementById(slug);if(target){target.style.display="block";target.scrollIntoView({behavior:"smooth"})}})});
-if(location.hash){var slug=location.hash.replace("#","");var target=document.getElementById(slug);if(target){document.querySelector(".projects-section").style.display="none";document.querySelector(".hero").style.display="none";target.style.display="block"}}
+}
+}
+}
+}
+window.switchFile=switchFile;
+
+var cards=document.querySelectorAll(".project-card");
+for(var i=0;i<cards.length;i++){
+(function(card){
+card.addEventListener("click",function(e){
+e.preventDefault();
+var slug=card.getAttribute("href").replace("#","");
+projectsSection.style.display="none";
+hero.style.display="none";
+for(var j=0;j<allSections.length;j++){allSections[j].style.display="none"}
+var target=document.getElementById(slug);
+if(target){
+target.style.display="block";
+history.replaceState(null,"",location.pathname+"#"+encodeURIComponent(slug));
+target.scrollIntoView({behavior:"smooth"})
+}
+})
+})(cards[i])
+}
+
+if(location.hash){
+var slug=decodeURIComponent(location.hash.replace("#",""));
+var target=document.getElementById(slug);
+if(target){
+projectsSection.style.display="none";
+hero.style.display="none";
+target.style.display="block"
+}
+}
+})();
 </script>
 </body>
 </html>
