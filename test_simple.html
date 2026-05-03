@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TEST - Simple</title>
+<style>
+body{font-family:sans-serif;background:#0a0a0f;color:#e8e8ed;margin:0;padding:20px}
+h1{text-align:center;color:#6c5ce7}
+.card{display:block;background:#16161f;border:1px solid #252535;border-radius:12px;padding:24px;margin:16px auto;max-width:400px;text-decoration:none;color:#e8e8ed;cursor:pointer}
+.card:hover{background:#1c1c28}
+.card h3{margin:0 0 8px;color:#fff}
+.card p{margin:0;color:#9898a8;font-size:14px}
+.back{display:inline-block;color:#6c5ce7;cursor:pointer;margin:16px 0;font-size:16px}
+.detail{display:none;background:#16161f;border-radius:12px;padding:24px;max-width:600px;margin:20px auto}
+.detail h2{color:#a29bfe;margin-top:0}
+.code{background:#0d0d14;border-radius:8px;padding:16px;font-family:monospace;font-size:13px;white-space:pre-wrap;overflow-x:auto;color:#00d2a0}
+</style>
+</head>
+<body>
+
+<h1>TEST PAGE - 2 Projects</h1>
+
+<div id="home-section">
+  <a href="javascript:void(0)" onclick="openProj('test-project-1')" class="card">
+    <h3>测试项目 1</h3>
+    <p>这是第一个测试项目</p>
+  </a>
+  <a href="javascript:void(0)" onclick="openProj('test-project-2')" class="card">
+    <h3>测试项目 2</h3>
+    <p>这是第二个测试项目</p>
+  </a>
+</div>
+
+<div id="test-project-1" class="detail">
+  <a onclick="goHome()" class="back">← 返回项目列表</a>
+  <h2>测试项目 1 代码</h2>
+  <div class="code">#include &lt;stdio.h&gt;
+int main() {
+    printf("Hello World 1!\n");
+    return 0;
+}</div>
+</div>
+
+<div id="test-project-2" class="detail">
+  <a onclick="goHome()" class="back">← 返回项目列表</a>
+  <h2>测试项目 2 代码</h2>
+  <div class="code">#include &lt;stdio.h&gt;
+int main() {
+    printf("Hello World 2!\n");
+    return 0;
+}</div>
+</div>
+
+<script>
+function goHome(){
+  var ds=document.querySelectorAll(".detail");
+  for(var i=0;i<ds.length;i++){ds[i].style.display="none"}
+  document.getElementById("home-section").style.display="block";
+}
+function openProj(id){
+  document.getElementById("home-section").style.display="none";
+  var ds=document.querySelectorAll(".detail");
+  for(var i=0;i<ds.length;i++){ds[i].style.display="none"}
+  var t=document.getElementById(id);
+  if(t){t.style.display="block"}
+}
+</script>
+
+</body>
+</html>
