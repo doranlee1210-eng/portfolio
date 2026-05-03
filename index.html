@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -502,7 +502,7 @@ a:hover { color: var(--accent); }
 <body>
 <nav class="navbar"><div class="nav-inner"><span class="nav-logo"><span class="logo-bracket">&lt;</span><span class="logo-text">Portfolio</span><span class="logo-bracket">/&gt;</span></span></div></nav>
 <main class="main-content">
-<section class="hero" id="hero-wrap"><div class="hero-content"><h1 class="hero-title"><span class="gradient-text">我的项目作品集</span></h1><p class="hero-subtitle">探索创意与代码的交汇点</p><div class="hero-stats"><div class="stat-item"><span class="stat-number">4</span><span class="stat-label">项目</span></div></div></div><div class="hero-bg"></div></section>
+<div id="home-section"><section class="hero" id="hero-wrap"><div class="hero-content"><h1 class="hero-title"><span class="gradient-text">我的项目作品集</span></h1><p class="hero-subtitle">探索创意与代码的交汇点</p><div class="hero-stats"><div class="stat-item"><span class="stat-number">4</span><span class="stat-label">项目</span></div></div></div><div class="hero-bg"></div></section>
 <section class="projects-section" id="projects-wrap"><div class="projects-grid">
 <a href="javascript:void(0)" onclick="openProject('智能循迹小车')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能循迹小车</h3>
 <p class="card-desc">用STM32F103为核心板，用Keil uVision5开发的智能循迹小车</p>
@@ -516,9 +516,9 @@ a:hover { color: var(--accent); }
 <a href="javascript:void(0)" onclick="openProject('智能门锁')" class="project-card"><div class="card-accent"></div><div class="card-body"><div class="card-icon"><span class="card-icon-text">📁</span></div><h3 class="card-title">智能门锁</h3>
 <p class="card-desc">以STM32F407为核心板，用FreeRTOS操作系统实现多模态智能门锁系统</p>
 <div class="card-meta"><div class="card-tags"></div><div class="card-info"><span class="card-files">34 个文件</span><span class="card-arrow">→</span></div></div></div></a>
-</div></section>
+</div></section></div>
 <div id="智能循迹小车" class="project-detail-section" style="display:none">
-<div class="project-detail"><a href="#" onclick="showHome();return false" class="back-link">&larr; 返回项目列表</a>
+<div class="project-detail"><a href="javascript:void(0)" onclick="showHome()" class="back-link">&larr; 返回项目列表</a>
 <header class="project-header"><h1 class="project-name">智能循迹小车</h1><div class="project-links"></div></header>
 <div class="project-description"><h3>项目描述</h3><p style="white-space:pre-wrap">用STM32F103为核心板，用Keil uVision5开发的智能循迹小车</p></div>
 <div class="code-section"><h3>项目文件 <span class="file-count">21 个文件</span></h3>
@@ -572,7 +572,7 @@ a:hover { color: var(--accent); }
 </div></div></div>
 </div></div>
 <div id="智能点餐系统" class="project-detail-section" style="display:none">
-<div class="project-detail"><a href="#" onclick="showHome();return false" class="back-link">&larr; 返回项目列表</a>
+<div class="project-detail"><a href="javascript:void(0)" onclick="showHome()" class="back-link">&larr; 返回项目列表</a>
 <header class="project-header"><h1 class="project-name">智能点餐系统</h1><div class="project-links"></div></header>
 <div class="project-description"><h3>项目描述</h3><p style="white-space:pre-wrap">用Qt Creator 4.11.1 (Community)和C++完成的C/S架构的智能点餐系统</p></div>
 <div class="code-section"><h3>项目文件 <span class="file-count">74 个文件</span></h3>
@@ -732,7 +732,7 @@ a:hover { color: var(--accent); }
 </div></div></div>
 </div></div>
 <div id="智能家居" class="project-detail-section" style="display:none">
-<div class="project-detail"><a href="#" onclick="showHome();return false" class="back-link">&larr; 返回项目列表</a>
+<div class="project-detail"><a href="javascript:void(0)" onclick="showHome()" class="back-link">&larr; 返回项目列表</a>
 <header class="project-header"><h1 class="project-name">智能家居</h1><div class="project-links"></div></header>
 <div class="project-description"><h3>项目描述</h3><p style="white-space:pre-wrap">用LVGL以及MQTT巴法云实现的远端控制的智能家居系统</p></div>
 <div class="code-section"><h3>项目文件 <span class="file-count">13 个文件</span></h3>
@@ -770,7 +770,7 @@ a:hover { color: var(--accent); }
 </div></div></div>
 </div></div>
 <div id="智能门锁" class="project-detail-section" style="display:none">
-<div class="project-detail"><a href="#" onclick="showHome();return false" class="back-link">&larr; 返回项目列表</a>
+<div class="project-detail"><a href="javascript:void(0)" onclick="showHome()" class="back-link">&larr; 返回项目列表</a>
 <header class="project-header"><h1 class="project-name">智能门锁</h1><div class="project-links"></div></header>
 <div class="project-description"><h3>项目描述</h3><p style="white-space:pre-wrap">以STM32F407为核心板，用FreeRTOS操作系统实现多模态智能门锁系统</p></div>
 <div class="code-section"><h3>项目文件 <span class="file-count">34 个文件</span></h3>
@@ -850,18 +850,16 @@ a:hover { color: var(--accent); }
 </div></div></div>
 </div></div>
 </main>
-<footer class="footer"><div class="footer-inner"><p>My Portfolio v4 | All projects working</p></div></footer>
+<footer class="footer"><div class="footer-inner"><p>My Portfolio v5 | All projects working</p></div></footer>
 <script>
 function showHome(){
 var s=document.querySelectorAll(".project-detail-section");
 for(var i=0;i<s.length;i++){s[i].style.display="none"}
-document.getElementById("projects-wrap").style.display="block";
-document.getElementById("hero-wrap").style.display="block";
+document.getElementById("home-section").style.display="block";
 }
 
 function openProject(slug){
-document.getElementById("projects-wrap").style.display="none";
-document.getElementById("hero-wrap").style.display="none";
+document.getElementById("home-section").style.display="none";
 var s=document.querySelectorAll(".project-detail-section");
 for(var i=0;i<s.length;i++){s[i].style.display="none"}
 var t=document.getElementById(slug);
